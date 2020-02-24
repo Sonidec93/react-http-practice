@@ -5,6 +5,7 @@ import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
 import axios from 'axios';
+import Posts from './Posts/posts';
 
 class Blog extends Component {
     state = {
@@ -13,7 +14,7 @@ class Blog extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then(response => {
+        axios.get('/posts').then(response => {
             const resp = response.data.slice(0, 4).map(post => {
                 return {
                     ...post,
@@ -45,16 +46,20 @@ class Blog extends Component {
             )
         }
         return (
-            <div>
-                <section className="Posts">
-                    {posts}
-                </section>
-                <section>
-                    {fullPost}
-                </section>
-                <section>
-                    <NewPost />
-                </section>
+            <div className="Blog">
+                <header>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="new-post">New Post</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+                <Posts />
             </div>
         );
     }
