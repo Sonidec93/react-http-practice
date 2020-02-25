@@ -22,10 +22,12 @@ class Posts extends Component {
             console.log('Error occured while fetching from jsonplaceholder');
         });
     }
-    selectPost = () => {
-        this.
+    selectPost = (index) => {
+        this.setState({ selectedPost: { ...this.state.recievedPost[index] } });
+        console.log('here');
     }
     render() {
+        console.log('in Posts');
         const posts = this.state.recievedPost.map((post, index) => {
             return (
                 <Post key={post.id} title={post.title} author={post.title} selectPost={this.selectPost.bind(this, index)} />
