@@ -23,8 +23,8 @@ axios.interceptors.response.use((response) => {
 })
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
-axios.defaults.headers.common['content-type'] = 'application/json';
-axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+// axios.defaults.headers.common['content-type'] = 'application/json';
+// axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

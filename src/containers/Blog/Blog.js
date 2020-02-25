@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import './Blog.css';
-import Posts from './Posts/posts';
 import NewPost from './NewPost/NewPost';
+import Posts from './Posts/posts';
+import FullPost from './FullPost/FullPost';
 class Blog extends Component {
-
 
     render() {
         return (
@@ -13,14 +13,20 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <Link to="/">Home</Link>
+                                <NavLink to="/"
+                                    activeStyle={{
+                                        color: 'red',
+                                        textDecoration: 'underline'
+                                    }}
+                                    exact>Home</NavLink>
                             </li>
                             <li>
-                                <Link to={{
+                                {/* <Link to={this.props.match.url + '/new-posts'}>New Post</Link> //for relative path follow this way */}
+                                <NavLink activeClassName="my-active" exact to={{
                                     pathname: '/new-posts',
-                                    hash: '#submit',
-                                    search: '?name=Mukul&age=26'
-                                }}>New Post</Link>
+                                    search:'?name=mukul&age=26',
+                                    hash:'#fragment'
+                                }}>New Post</NavLink>
                             </li>
                         </ul>
                     </nav>
@@ -28,7 +34,8 @@ class Blog extends Component {
                 {/* <Posts /> */}
                 {/* <Route path="/" render={() => <h1>Hello from router</h1>} /> */}
                 <Route path="/" exact component={Posts} />
-                <Route path="/new-posts" component={NewPost} />
+                <Route path="/new-posts" exact component={NewPost} />
+                <Route path="/fullpost/:id" exact component={FullPost} />
 
             </div>
         );

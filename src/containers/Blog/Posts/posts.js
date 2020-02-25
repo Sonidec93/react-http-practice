@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import './posts.css'
 import axios from 'axios';
+import React, { Component } from 'react';
 import Post from './Post/Post';
+import './posts.css';
+import { Link } from 'react-router-dom';
+
 
 class Posts extends Component {
 
@@ -27,13 +29,13 @@ class Posts extends Component {
         console.log('here');
     }
     render() {
-        console.log('in Posts');
         const posts = this.state.recievedPost.map((post, index) => {
             return (
-                <Post key={post.id} title={post.title} author={post.title} selectPost={this.selectPost.bind(this, index)} />
+                <Link to={'/fullpost/' + index} key={post.id}>
+                    <Post key={post.id} title={post.title} author={post.title} selectPost={this.selectPost.bind(this, index)} />
+                </Link>
             )
         });
-
         return (
             <section className="Posts">
                 {posts}

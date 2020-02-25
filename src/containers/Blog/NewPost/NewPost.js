@@ -16,6 +16,13 @@ class NewPost extends Component {
             console.log(response);
         })
     }
+    componentDidMount() {
+        const params = new URLSearchParams(this.props.location.search);
+        for (let param of params.entries()) {
+            console.log(param);
+        }
+        console.log(this.props.location.hash);
+    }
 
     render() {
         return (

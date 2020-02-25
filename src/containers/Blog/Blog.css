@@ -1,30 +1,34 @@
-
 .Blog {
   text-align: center;
-  margin:0px;
+  margin: 0px;
 }
 
 .Blog ul {
   list-style: none;
-  margin:0px;
+  margin: 0px;
 }
 
 .Blog li {
-  display: inline-block;
+  display: inline-block;  
   margin: 2px 8px;
-  padding :16px 8px;
-  border:2px solid black;
+  padding: 16px 8px;
+  border: 2px solid black;
   border-radius: 2px 2px;
 }
 .Blog li a {
-  color:black;    
+  color: black;
   text-decoration: none;
 }
+
 .Blog li a:hover,
-.Blog li a:active {
+.Blog li a:active,
+.Blog li a.active {
   color: rgb(185, 99, 29);
 }
-
-.Blog header{
-  background:rgba(128, 128, 128, 0.795);
+.my-active {
+  color: royalblue;
 }
+.Blog header {
+  background: rgba(128, 128, 128, 0.795);
+}
+
