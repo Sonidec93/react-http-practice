@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import FullPost from '../FullPost/FullPost';
 import Post from './Post/Post';
 import './posts.css';
-import { Link } from 'react-router-dom';
 
 
 class Posts extends Component {
@@ -26,17 +27,23 @@ class Posts extends Component {
     }
     selectPost = (index) => {
         this.setState({ selectedPost: { ...this.state.recievedPost[index] } });
+        this.props.history.push({ pathname: '/'+ index});
         console.log('here');
     }
     render() {
+        console.log(this.props);
         const posts = this.state.recievedPost.map((post, index) => {
             return (
-                <Link to={'/fullpost/' + index} key={post.id}>
-                    <Post key={post.id} title={post.title} author={post.title} selectPost={this.selectPost.bind(this, index)} />
-                </Link>
+                // <Link to={'/' + post.id} key={post.id}>
+                <div onClick={this.selectPost.bind(this, post.id)} key={index} >
+                    <Post key={post.id} title={post.title} author={post.title} />
+                   
+                </div>
+                // </Link>
             )
         });
         return (
+            
             <section className="Posts">
                 {posts}
             </section>

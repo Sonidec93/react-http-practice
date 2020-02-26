@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import './Blog.css';
 import NewPost from './NewPost/NewPost';
 import Posts from './Posts/posts';
-import FullPost from './FullPost/FullPost';
 class Blog extends Component {
 
     render() {
@@ -24,8 +23,8 @@ class Blog extends Component {
                                 {/* <Link to={this.props.match.url + '/new-posts'}>New Post</Link> //for relative path follow this way */}
                                 <NavLink activeClassName="my-active" exact to={{
                                     pathname: '/new-posts',
-                                    search:'?name=mukul&age=26',
-                                    hash:'#fragment'
+                                    search: '?name=mukul&age=26',
+                                    hash: '#fragment'
                                 }}>New Post</NavLink>
                             </li>
                         </ul>
@@ -33,10 +32,12 @@ class Blog extends Component {
                 </header>
                 {/* <Posts /> */}
                 {/* <Route path="/" render={() => <h1>Hello from router</h1>} /> */}
-                <Route path="/" exact component={Posts} />
-                <Route path="/new-posts" exact component={NewPost} />
-                <Route path="/fullpost/:id" exact component={FullPost} />
+                <Switch>
+                    <Route path="/new-posts" exact component={NewPost} />
+                    <Route path="/" component={Posts} />
 
+                    {/* <Route path="/:id" exact component={FullPost} /> */}
+                </Switch>
             </div>
         );
     }
