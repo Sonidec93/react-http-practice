@@ -27,27 +27,23 @@ class Posts extends Component {
     }
     selectPost = (index) => {
         this.setState({ selectedPost: { ...this.state.recievedPost[index] } });
-        this.props.history.push({ pathname: '/'+ index});
-        console.log('here');
+        this.props.history.push({ pathname: this.props.match.url + '/' + index });
     }
     render() {
-        console.log(this.props);
+        console.log('url ', this.props.match.url)
         const posts = this.state.recievedPost.map((post, index) => {
             return (
-                // <Link to={'/' + post.id} key={post.id}>
-                <div onClick={this.selectPost.bind(this, post.id)} key={index} >
-                    <Post key={post.id} title={post.title} author={post.title} />
-                   
-                </div>
-                // </Link>
+                <Post key={post.id} title={post.title} author={post.title} selectPost={this.selectPost.bind(this, post.id)} />
             )
         });
         return (
-            
-            <section className="Posts">
-                {posts}
-            </section>
-        )
+            <div>
+                <section className="Posts">
+                    {posts}
+                </section>
+                <Route path={this.props.match.url + "/:id"} exact component={FullPost} />
+            </div>
+        );
     }
 }
 

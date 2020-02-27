@@ -9,7 +9,7 @@
 }
 
 .Blog li {
-  display: inline-block;  
+  display: inline-block;
   margin: 2px 8px;
   padding: 16px 8px;
   border: 2px solid black;
@@ -26,9 +26,8 @@
   color: rgb(185, 99, 29);
 }
 .my-active {
-  color: royalblue;
+  color: royalblue !important ;
 }
 .Blog header {
   background: rgba(128, 128, 128, 0.795);
 }
-

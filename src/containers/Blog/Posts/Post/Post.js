@@ -3,7 +3,6 @@ import './Post.css';
 import { withRouter } from 'react-router-dom';
 
 const post = (props) => {
-    console.log(props);
     return (
         <article className="Post" onClick={props.selectPost}>
             <h1>{props.title}</h1>
