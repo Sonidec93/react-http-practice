@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import './FullPost.css';
-import axios from 'axios';
 
 class FullPost extends Component {
 
@@ -17,7 +17,7 @@ class FullPost extends Component {
             }
         }
     }
-    
+
     componentDidUpdate() {
         if (this.props.match.params.id) {
             if ((!this.state.loadedPost) || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id)) {
@@ -35,7 +35,7 @@ class FullPost extends Component {
     render() {
         console.log('Full Post', JSON.stringify(this.props));
         let post;
-        post = (<p style={{ textAlign: "center" }} >Please select a Post!</p>);
+        post = (<p style={{ textAlign: "center" }} >Please select a Post! {this.props.children}</p>);
 
         if (this.props.match.params.id) {
             post = (<p style={{ textAlign: "center" }}>Loading...</p>)

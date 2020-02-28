@@ -1,8 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
+import AsyncComponent from '../../hoc/AsyncComponent';
 import './Blog.css';
-import NewPost from './NewPost/NewPost';
-import Posts from './Posts/posts';
+import FullPost from './FullPost/FullPost';
+// import NewPost from './NewPost/NewPost';
+// import Posts from './Posts/posts';
+
+const Posts = lazy(() => {
+    return import('./Posts/posts');
+})
+
+const AsyncComp = AsyncComponent(() => {
+    return import('./NewPost/NewPost');
+});
+
 class Blog extends Component {
 
     render() {
@@ -17,11 +28,11 @@ class Blog extends Component {
                                         color: 'red',
                                         textDecoration: 'underline'
                                     }}
-                                    >Home</NavLink>
+                                >Home</NavLink>
                             </li>
                             <li>
                                 {/* <Link to={this.props.match.url + '/new-posts'}>New Post</Link> //for relative path follow this way */}
-                                <NavLink activeClassName="my-active"  to={{
+                                <NavLink activeClassName="my-active" to={{
                                     pathname: '/new-posts',
                                     search: '?name=mukul&age=26',
                                     hash: '#fragment'
@@ -35,10 +46,17 @@ class Blog extends Component {
 
 
                 <Switch>
-                    <Route path="/new-posts" exact component={NewPost} />
-                    <Route path="/posts"  component={Posts} />
+                    <Route path="/new-posts" exact component={AsyncComp} />
+                    {/* <Route path="/posts" component={Posts} /> */}
+                    <Route path="/posts" render={(props) => (
+                        <Suspense fallback={<div>Loading ...</div>}>
+                            <Posts {...props} />
+                        </Suspense>
+                    )
+                    } />
+
                     {/* <Redirect from="/" to="/posts" /> */}
-                    <Route render={()=><h1>Not Found</h1>} />
+                    <Route render={(props) => <FullPost {...props} >Hello FullPost</FullPost>} />
                 </Switch>
             </div>
         );
