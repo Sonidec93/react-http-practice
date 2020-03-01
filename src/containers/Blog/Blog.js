@@ -16,6 +16,16 @@ const AsyncComp = AsyncComponent(() => {
 
 class Blog extends Component {
 
+    state = {
+        auth: false
+    }
+    toggleAuth = () => {
+        this.setState((prevState, props) => {
+            return {
+                auth: !prevState.auth
+            }
+        })
+    }
     render() {
         return (
             <div className="Blog">
@@ -44,9 +54,9 @@ class Blog extends Component {
                 {/* <Posts /> */}
                 {/* <Route path="/" render={() => <h1>Hello from router</h1>} /> */}
 
-
+                <button onClick={this.toggleAuth}>Toggle Auth </button>
                 <Switch>
-                    <Route path="/new-posts" exact component={AsyncComp} />
+                    {this.state.auth ? <Route path="/new-posts" exact component={AsyncComp} /> : null}
                     {/* <Route path="/posts" component={Posts} /> */}
                     <Route path="/posts" render={(props) => (
                         <Suspense fallback={<div>Loading ...</div>}>

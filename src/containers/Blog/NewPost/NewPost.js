@@ -16,10 +16,11 @@ class NewPost extends Component {
         let data = { ...this.state };
         axios.post('https://jsonplaceholder.typicode.com/posts', data).then(response => {
             // this.setState({ submitted: true });
-            this.props.history.push({ pathname:'/posts'});
+            this.props.history.push({ pathname: '/posts' });
         })
     }
     componentDidMount() {
+
         const params = new URLSearchParams(this.props.location.search);
         for (let param of params.entries()) {
             console.log(param);
